@@ -31,9 +31,12 @@ const ship = () => {
 			hitPositions: [null, null],
 		},
 	];
-	function hit(hitPosition) {}
+	function hit(markedPosition = 2, boatType = 0) {
+		ships[(boatType = 0)].hitPositions.splice(markedPosition, 1, "hit");
+		return ships[(boatType = 0)].hitPositions;
+	}
 	function isSunk() {
-		console.log(ships.length);
+		console.log(ships[0].length);
 	}
 	return {
 		hit,
