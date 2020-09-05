@@ -12,3 +12,6 @@ test("ships hit positions", () => {
 test("position is marked as hit", () => {
 	expect(Ships.hit()).toStrictEqual([null, null, "hit", null, null, null]);
 });
+test("is sunk function works. all positions are marked as hit", () => {
+	expect(Ships.isSunk()).toBe("boat still alive");
+});

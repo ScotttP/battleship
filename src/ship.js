@@ -32,11 +32,16 @@ const ship = () => {
 		},
 	];
 	function hit(markedPosition = 2, boatType = 0) {
-		ships[(boatType = 0)].hitPositions.splice(markedPosition, 1, "hit");
-		return ships[(boatType = 0)].hitPositions;
+		ships[boatType].hitPositions.splice(markedPosition, 1, "hit");
+		return ships[boatType].hitPositions;
 	}
-	function isSunk() {
-		console.log(ships[0].length);
+	function isSunk(boatType = 0) {
+		const allHit = (indexInHitPositions) => indexInHitPositions === "hit";
+		if (ships[boatType].hitPositions.every(allHit) === false) {
+			return "boat still alive";
+		} else {
+			return "boat is sunk";
+		}
 	}
 	return {
 		hit,
