@@ -22,7 +22,7 @@ const ship = () => {
 			name: "submarine",
 			length: 3,
 			hitOrNot: false,
-			hitPositions: [null, null, null],
+			hitPositions: [null, null, null], //yo
 		},
 		{
 			name: "destroyer",

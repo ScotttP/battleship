@@ -15,3 +15,4 @@ test("position is marked as hit", () => {
 test("is sunk function works. all positions are marked as hit", () => {
 	expect(Ships.isSunk()).toBe("boat still alive");
 });
+//yo
