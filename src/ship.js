@@ -1,5 +1,5 @@
 const ship = () => {
-	const ships = [
+	const shipsList = [
 		{
 			name: "carrier",
 			length: 6,
@@ -31,13 +31,14 @@ const ship = () => {
 			hitPositions: [null, null],
 		},
 	];
-	function hit(markedPosition = 2, boatType = 0) {
-		ships[boatType].hitPositions.splice(markedPosition, 1, "hit");
-		return ships[boatType].hitPositions;
+	function hit(markedPosition, boatType) {
+		shipsList[boatType].hitPositions.splice(markedPosition, 1, "hit");
+		isSunk(boatType);
+		return shipsList[boatType].hitPositions;
 	}
-	function isSunk(boatType = 0) {
+	function isSunk(boatType) {
 		const allHit = (indexInHitPositions) => indexInHitPositions === "hit";
-		if (ships[boatType].hitPositions.every(allHit) === false) {
+		if (shipsList[boatType].hitPositions.every(allHit) === false) {
 			return "boat still alive";
 		} else {
 			return "boat is sunk";
@@ -46,7 +47,7 @@ const ship = () => {
 	return {
 		hit,
 		isSunk,
-		ships,
+		shipsList,
 	};
 };
 
