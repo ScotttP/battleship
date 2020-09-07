@@ -31,10 +31,10 @@ const gameboard = () => {
 			return board;
 		}
 	}
-	function recieveAttack(guessRow, guessColumn, selectedBoat) {
+	function recieveAttack(guessRow, guessColumn) {
 		if (board[guessRow][guessColumn].available === false) {
 			board[guessRow][guessColumn].markedHit = true;
-			shipFactory.hit(selectedBoat);
+			shipFactory.hit(board[guessRow][guessColumn].boatPlacedOnPosition);
 		}
 	}
 	return {
