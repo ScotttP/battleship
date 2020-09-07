@@ -22,7 +22,7 @@ const ship = () => {
 			name: "submarine",
 			length: 3,
 			hitOrNot: false,
-			hitPositions: [null, null, null], //yo
+			hitPositions: [null, null, null],
 		},
 		{
 			name: "destroyer",
@@ -31,14 +31,14 @@ const ship = () => {
 			hitPositions: [null, null],
 		},
 	];
-	function hit(markedPosition, boatType) {
-		shipsList[boatType].hitPositions.splice(markedPosition, 1, "hit");
-		isSunk(boatType);
-		return shipsList[boatType].hitPositions;
+	function hit(markedPosition, selectedBoat) {
+		shipsList[selectedBoat].hitPositions.splice(markedPosition, 1, "hit");
+		isSunk(selectedBoat);
+		return shipsList[selectedBoat].hitPositions;
 	}
-	function isSunk(boatType) {
+	function isSunk(selectedBoat) {
 		const allHit = (indexInHitPositions) => indexInHitPositions === "hit";
-		if (shipsList[boatType].hitPositions.every(allHit) === false) {
+		if (shipsList[selectedBoat].hitPositions.every(allHit) === false) {
 			return "boat still alive";
 		} else {
 			return "boat is sunk";
