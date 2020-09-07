@@ -10,31 +10,37 @@ const gameboard = () => {
 					return {
 						available: true,
 						markedHit: false,
+						boatPlacedOnPosition: null,
 					};
 				})
 		);
-	function placeShips(row, column, shipLength, shipOrientation) {
+	function placeShips(placedRow, placedColumn, selectedBoat, shipOrientation) {
 		if (shipOrientation === "horizontal") {
-			for (let i = 0; i <= shipLength - 1; i++) {
-				board[row][column].available = false;
-				column++;
+			for (let i = 0; i <= selectedBoat.length - 1; i++) {
+				board[placedRow][placedColumn].available = false;
+				board[placedRow][placedColumn].boatPlacedOnPosition = selectedBoat;
+				placedColumn++;
 			}
 			return board;
 		} else if (shipOrientation === "vertical") {
-			for (let i = 0; i <= shipLength - 1; i++) {
-				board[row][column].available = false;
-				row++;
+			for (let i = 0; i <= selectedBoat.length - 1; i++) {
+				board[placedRow][placedColumn].available = false;
+				board[placedRow][placedColumn].boatPlacedOnPosition = selectedBoat;
+				placedRow++;
 			}
 			return board;
-			//keep the same column, increase the row based on shipLength
 		}
-		//game.board[row][column]
-		//return shipFactory.shipsList[0].length; //returns the ship selected's length
 	}
-	function recieveAttack() {}
+	function recieveAttack(guessRow, guessColumn, selectedBoat) {
+		if (board[guessRow][guessColumn].available === false) {
+			board[guessRow][guessColumn].markedHit = true;
+			shipFactory.hit(selectedBoat);
+		}
+	}
 	return {
 		board,
 		placeShips,
+		recieveAttack,
 	};
 };
 export default gameboard;

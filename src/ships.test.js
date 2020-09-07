@@ -1,15 +1,12 @@
 import ship from "./ship";
-let Ships = ship();
+let shipFactory = ship();
 
-test("Ships object length exists", () => {
-	expect(Ships.shipsList[0].length).toBe(6);
-});
-test("ships hit positions", () => {
-	expect(Ships.shipsList[2].hitPositions[2]).toBe(null);
+test("shipFactory object length exists", () => {
+	expect(shipFactory.shipsList[0].length).toBe(6);
 });
 test("position is marked as hit", () => {
-	expect(Ships.hit(2, 0)).toStrictEqual([null, null, "hit", null, null, null]);
+	expect(shipFactory.hit(0)).toBe(5);
 });
 test("is sunk function works. all positions are marked as hit", () => {
-	expect(Ships.isSunk(0)).toBe("boat still alive");
+	expect(shipFactory.isSunk(0)).toBe("not sunk");
 });
