@@ -35,12 +35,20 @@ const gameboard = () => {
 		if (board[guessRow][guessColumn].available === false) {
 			board[guessRow][guessColumn].markedHit = true;
 			shipFactory.hit(board[guessRow][guessColumn].boatPlacedOnPosition);
+			allAreSunk(shipFactory.shipsList);
+		} else {
+			board[guessRow][guessColumn].available = false;
 		}
+		return board[guessRow][guessColumn];
+	}
+	function allAreSunk(listOfShips) {
+		return listOfShips.every((obj) => obj.health === 0);
 	}
 	return {
 		board,
 		placeShips,
 		recieveAttack,
+		allAreSunk,
 	};
 };
 export default gameboard;

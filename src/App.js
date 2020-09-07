@@ -4,7 +4,8 @@ import gameboard from "./gameboard.js";
 import "./App.css";
 function App() {
 	let game = gameboard();
-	game.placeShips(0, 2, 3, "vertical");
+	let shipFactory = ship();
+	game.placeShips(0, 2, shipFactory.shipsList[3], "horizontal");
 	console.log(game.board);
 	return (
 		<div className="App">
