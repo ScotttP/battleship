@@ -16,19 +16,27 @@ const gameboard = () => {
 		);
 	function placeShips(placedRow, placedColumn, selectedBoat, shipOrientation) {
 		if (shipOrientation === "horizontal") {
-			for (let i = 0; i <= selectedBoat.length - 1; i++) {
-				board[placedRow][placedColumn].available = false;
-				board[placedRow][placedColumn].boatPlacedOnPosition = selectedBoat;
-				placedColumn++;
+			if (board[placedRow][placedColumn].available === true) {
+				for (let i = 0; i <= selectedBoat.length - 1; i++) {
+					board[placedRow][placedColumn].available = false;
+					board[placedRow][placedColumn].boatPlacedOnPosition = selectedBoat;
+					placedColumn++;
+				}
+				return board;
+			} else {
+				return;
 			}
-			return board;
 		} else if (shipOrientation === "vertical") {
-			for (let i = 0; i <= selectedBoat.length - 1; i++) {
-				board[placedRow][placedColumn].available = false;
-				board[placedRow][placedColumn].boatPlacedOnPosition = selectedBoat;
-				placedRow++;
+			if (board[placedRow][placedColumn].available === true) {
+				for (let i = 0; i <= selectedBoat.length - 1; i++) {
+					board[placedRow][placedColumn].available = false;
+					board[placedRow][placedColumn].boatPlacedOnPosition = selectedBoat;
+					placedRow++;
+				}
+				return board;
+			} else {
+				return;
 			}
-			return board;
 		}
 	}
 	function recieveAttack(guessRow, guessColumn) {
@@ -39,10 +47,10 @@ const gameboard = () => {
 		} else {
 			board[guessRow][guessColumn].available = false;
 		}
-		return board[guessRow][guessColumn];
+		return board;
 	}
 	function allAreSunk(listOfShips) {
-		return listOfShips.every((obj) => obj.health === 0);
+		return listOfShips.every((ship) => ship.health === 0);
 	}
 	return {
 		board,
