@@ -1,7 +1,7 @@
 import gameboard from "./gameboard.js";
 import ship from "./ship";
-let game = gameboard();
-let shipFactory = ship();
+const game = gameboard();
+const shipFactory = ship();
 
 test("Ships object length exists", () => {
 	expect(game.board.length).toBe(10);

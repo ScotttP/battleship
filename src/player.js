@@ -1,5 +1,9 @@
-const player = () => {};
+import gameboard from "./gameboard";
+import ship from "./ship";
+const player = () => {
+	const game = gameboard();
+	const shipFactory = ship();
+	function playerTurn() {}
+};
 
-const computer = () => {};
-
-export { player, computer };
+export { player };
