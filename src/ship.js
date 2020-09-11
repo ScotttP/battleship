@@ -1,5 +1,5 @@
 const ship = () => {
-	const shipsList = [
+	let shipsList = [
 		{
 			name: "carrier",
 			length: 6,
