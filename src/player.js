@@ -1,15 +1,13 @@
 import gameboard from "./gameboard";
 import ship from "./ship";
-const player = (userName) => {
+const player = (userName, enemyName) => {
 	let user = userName;
-	let enemy;
+	let enemy = enemyName;
 	let boardFactory = gameboard();
 	let shipsFactory = ship();
 
-	function playerTurn() {
-		return;
-	}
-	return {};
+	function playerTurn() {}
+	return { user, enemy, boardFactory, shipsFactory };
 };
 
 export { player };

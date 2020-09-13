@@ -24,7 +24,7 @@ const gameboard = () => {
 				}
 				return board;
 			} else {
-				return;
+				console.log("board position taken");
 			}
 		} else if (shipOrientation === "vertical") {
 			if (board[placedRow][placedColumn].available === true) {
@@ -35,7 +35,7 @@ const gameboard = () => {
 				}
 				return board;
 			} else {
-				return;
+				console.log("board position taken");
 			}
 		}
 	}

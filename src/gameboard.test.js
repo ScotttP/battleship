@@ -1,10 +1,10 @@
 import gameboard from "./gameboard.js";
 import ship from "./ship";
-const game = gameboard();
+const boardFactory = gameboard();
 const shipFactory = ship();
 
 test("Ships object length exists", () => {
-	expect(game.board.length).toBe(10);
+	expect(boardFactory.board.length).toBe(10);
 });
 
 test("all ships have sunk", () => {
@@ -45,13 +45,13 @@ test("all ships have sunk", () => {
 			orientation: "horizontal",
 		},
 	];
-	expect(game.allAreSunk(shipsList)).toBe(true);
+	expect(boardFactory.allAreSunk(shipsList)).toBe(true);
 });
 
-test("placeShips function correctly marks gameboard positions with ship orientation being horizonal", () => {
-	game.placeShips(0, 2, shipFactory.shipsList[3], "horizontal");
+test("placeShips function correctly marks boardFactoryboard positions with ship orientation being horizonal", () => {
+	boardFactory.placeShips(0, 2, shipFactory.shipsList[3], "horizontal");
 
-	expect(game.board[0]).toMatchObject([
+	expect(boardFactory.board[0]).toMatchObject([
 		//0
 		{ available: true, markedHit: false, boatPlacedOnPosition: null },
 		{ available: true, markedHit: false, boatPlacedOnPosition: null },
@@ -96,7 +96,7 @@ test("placeShips function correctly marks gameboard positions with ship orientat
 	]);
 });
 
-test("placeShips function correctly marks gameboard positions with ship orientation being vertical", () => {
+test("placeShips function correctly marks boardFactoryboard positions with ship orientation being vertical", () => {
 	let shipsList = [
 		{
 			name: "carrier",
@@ -134,9 +134,9 @@ test("placeShips function correctly marks gameboard positions with ship orientat
 			orientation: "vertical",
 		},
 	];
-	game.placeShips(3, 2, shipsList[3], "vertical");
+	boardFactory.placeShips(3, 2, shipsList[3], "vertical");
 
-	expect(game.board[3]).toMatchObject([
+	expect(boardFactory.board[3]).toMatchObject([
 		{ available: true, markedHit: false, boatPlacedOnPosition: null },
 		{ available: true, markedHit: false, boatPlacedOnPosition: null },
 		{
@@ -158,7 +158,7 @@ test("placeShips function correctly marks gameboard positions with ship orientat
 		{ available: true, markedHit: false, boatPlacedOnPosition: null },
 		{ available: true, markedHit: false, boatPlacedOnPosition: null },
 	]);
-	expect(game.board[4]).toMatchObject([
+	expect(boardFactory.board[4]).toMatchObject([
 		{ available: true, markedHit: false, boatPlacedOnPosition: null },
 		{ available: true, markedHit: false, boatPlacedOnPosition: null },
 		{
@@ -180,7 +180,7 @@ test("placeShips function correctly marks gameboard positions with ship orientat
 		{ available: true, markedHit: false, boatPlacedOnPosition: null },
 		{ available: true, markedHit: false, boatPlacedOnPosition: null },
 	]);
-	expect(game.board[5]).toMatchObject([
+	expect(boardFactory.board[5]).toMatchObject([
 		{ available: true, markedHit: false, boatPlacedOnPosition: null },
 		{ available: true, markedHit: false, boatPlacedOnPosition: null },
 		{
@@ -205,8 +205,8 @@ test("placeShips function correctly marks gameboard positions with ship orientat
 });
 
 test("receiveAttack function works", () => {
-	game.recieveAttack(9, 9);
-	expect(game.board[9][9]).toMatchObject({
+	boardFactory.recieveAttack(9, 9);
+	expect(boardFactory.board[9][9]).toMatchObject({
 		available: false,
 		markedHit: false,
 		boatPlacedOnPosition: null,
