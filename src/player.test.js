@@ -1,27 +1,80 @@
 import { player } from "./player";
 
 test("user board and enemy board exists", () => {
-	const playerFactory1 = player("Scott", "Computer");
-	const playerFactory2 = player("Computer", "Scott");
+	const player1 = player();
+	const computer = player();
 
-	playerFactory1.boardFactory.placeShips(
-		0,
-		0,
-		playerFactory1.shipsFactory.shipsList[4],
-		playerFactory1.shipsFactory.shipsList[4].orientation
-	);
-	playerFactory2.boardFactory.placeShips(
-		1,
-		1,
-		playerFactory2.shipsFactory.shipsList[4],
-		playerFactory2.shipsFactory.shipsList[4].orientation
-	);
+	player1.boardFactory.placeShips(0, 0, player1.shipsFactory.shipsList[4]);
+	computer.boardFactory.placeShips(1, 1, computer.shipsFactory.shipsList[4]);
 
-	expect(playerFactory1).toMatchObject({ user: "Scott", enemy: "Computer" });
-	expect(typeof playerFactory1.boardFactory).toBe("object");
+	expect(player1.boardFactory.board[0]).toMatchObject([
+		{
+			available: false,
+			markedHit: false,
+			boatPlacedOnPosition: {
+				name: "destroyer",
+				length: 2,
+				hitOrNot: false,
+				health: 2,
+				orientation: "horizontal",
+			},
+		},
+		{
+			available: false,
+			markedHit: false,
+			boatPlacedOnPosition: {
+				name: "destroyer",
+				length: 2,
+				hitOrNot: false,
+				health: 2,
+				orientation: "horizontal",
+			},
+		},
+		{ available: true, markedHit: false, boatPlacedOnPosition: null },
+		{ available: true, markedHit: false, boatPlacedOnPosition: null },
+		{ available: true, markedHit: false, boatPlacedOnPosition: null },
+		{ available: true, markedHit: false, boatPlacedOnPosition: null },
+		{ available: true, markedHit: false, boatPlacedOnPosition: null },
+		{ available: true, markedHit: false, boatPlacedOnPosition: null },
+		{ available: true, markedHit: false, boatPlacedOnPosition: null },
+		{ available: true, markedHit: false, boatPlacedOnPosition: null },
+	]);
+	expect(computer.boardFactory.board[1]).toMatchObject([
+		{ available: true, markedHit: false, boatPlacedOnPosition: null },
+		{
+			available: false,
+			markedHit: false,
+			boatPlacedOnPosition: {
+				name: "destroyer",
+				length: 2,
+				hitOrNot: false,
+				health: 2,
+				orientation: "horizontal",
+			},
+		},
+		{
+			available: false,
+			markedHit: false,
+			boatPlacedOnPosition: {
+				name: "destroyer",
+				length: 2,
+				hitOrNot: false,
+				health: 2,
+				orientation: "horizontal",
+			},
+		},
+		{ available: true, markedHit: false, boatPlacedOnPosition: null },
+		{ available: true, markedHit: false, boatPlacedOnPosition: null },
+		{ available: true, markedHit: false, boatPlacedOnPosition: null },
+		{ available: true, markedHit: false, boatPlacedOnPosition: null },
+		{ available: true, markedHit: false, boatPlacedOnPosition: null },
+		{ available: true, markedHit: false, boatPlacedOnPosition: null },
+		{ available: true, markedHit: false, boatPlacedOnPosition: null },
+	]);
+});
+test("randomCoordinates function returns coordinates between 0-9", () => {
+	const player1 = player();
 
-	// expect(playerFactory1.boardFactory.board).toBe(0);
-	// expect(playerFactory2.boardFactory.board).toBe(0);
-	console.log(playerFactory1.boardFactory.board); // need to make a test for this.
-	console.log(playerFactory2.boardFactory.board); // need to make a test for this.
+	expect(player1.randomCoordinates().randomRow).toBeGreaterThanOrEqual(0);
+	expect(player1.randomCoordinates().randomCol).toBeLessThanOrEqual(9);
 });

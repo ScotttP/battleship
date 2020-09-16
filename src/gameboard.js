@@ -14,8 +14,8 @@ const gameboard = () => {
 					};
 				})
 		);
-	function placeShips(placedRow, placedColumn, selectedBoat, shipOrientation) {
-		if (shipOrientation === "horizontal") {
+	function placeShips(placedRow, placedColumn, selectedBoat) {
+		if (selectedBoat.orientation === "horizontal") {
 			if (board[placedRow][placedColumn].available === true) {
 				for (let i = 0; i <= selectedBoat.length - 1; i++) {
 					board[placedRow][placedColumn].available = false;
@@ -26,7 +26,7 @@ const gameboard = () => {
 			} else {
 				console.log("board position taken");
 			}
-		} else if (shipOrientation === "vertical") {
+		} else if (selectedBoat.orientation === "vertical") {
 			if (board[placedRow][placedColumn].available === true) {
 				for (let i = 0; i <= selectedBoat.length - 1; i++) {
 					board[placedRow][placedColumn].available = false;
@@ -40,12 +40,26 @@ const gameboard = () => {
 		}
 	}
 	function recieveAttack(guessRow, guessColumn) {
-		if (board[guessRow][guessColumn].available === false) {
+		if (
+			board[guessRow][guessColumn].available === false &&
+			board[guessRow][guessColumn].boatPlacedOnPosition !== null
+		) {
 			board[guessRow][guessColumn].markedHit = true;
 			shipFactory.hit(board[guessRow][guessColumn].boatPlacedOnPosition);
 			allAreSunk(shipFactory.shipsList);
-		} else {
+		} else if (
+			board[guessRow][guessColumn].available === true &&
+			board[guessRow][guessColumn].boatPlacedOnPosition === null
+		) {
 			board[guessRow][guessColumn].available = false;
+			//mark it as missed
+		} else if (
+			board[guessRow][guessColumn].available === false &&
+			board[guessRow][guessColumn].boatPlacedOnPosition === null
+		) {
+			alert(
+				"these coordinates have already been taken and cannot be used anymore"
+			);
 		}
 		return board;
 	}
