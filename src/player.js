@@ -4,18 +4,11 @@ const player = () => {
 	let boardFactory = gameboard();
 	let shipsFactory = ship();
 
-	function playerTurn(enemyBoard) {
+	function playerTurn(enemyBoard, guessedRow, guessedCol) {
 		let turn = true;
 		if (turn === true) {
-			if (computer) {
-				//if the player turn is a computer, might need to fix the logic here.
-				enemyBoard.receiveAttack(
-					randomCoordinates().randomRow,
-					randomCoordinates().randomCol
-				);
-			} else {
-				enemyBoard.receiveAttack(row, col); //row and col need to come from somewhere.
-			}
+			enemyBoard.receiveAttack(guessedRow, guessedCol); //row and col need to come from somewhere.
+			console.log("else");
 		}
 		turn = false;
 	}

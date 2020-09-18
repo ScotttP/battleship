@@ -78,3 +78,10 @@ test("randomCoordinates function returns coordinates between 0-9", () => {
 	expect(player1.randomCoordinates().randomRow).toBeGreaterThanOrEqual(0);
 	expect(player1.randomCoordinates().randomCol).toBeLessThanOrEqual(9);
 });
+test("testing if playerTurn function works", () => {
+	const player1 = player();
+	const computer = player();
+	let enemyBoard = computer.boardFactory;
+	//either random row and col or picked by user
+	player1.playerTurn(enemyBoard, row, col);
+});
