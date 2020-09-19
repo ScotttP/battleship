@@ -205,7 +205,7 @@ test("placeShips function correctly marks boardFactoryboard positions with ship 
 });
 
 test("receiveAttack function works", () => {
-	boardFactory.recieveAttack(9, 9);
+	boardFactory.receiveAttack(9, 9);
 	expect(boardFactory.board[9][9]).toMatchObject({
 		available: false,
 		markedHit: false,

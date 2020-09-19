@@ -39,7 +39,7 @@ const gameboard = () => {
 			}
 		}
 	}
-	function recieveAttack(guessRow, guessColumn) {
+	function receiveAttack(guessRow, guessColumn) {
 		if (
 			board[guessRow][guessColumn].available === false &&
 			board[guessRow][guessColumn].boatPlacedOnPosition !== null
@@ -47,6 +47,7 @@ const gameboard = () => {
 			board[guessRow][guessColumn].markedHit = true;
 			shipFactory.hit(board[guessRow][guessColumn].boatPlacedOnPosition);
 			allAreSunk(shipFactory.shipsList);
+			console.log("hit");
 		} else if (
 			board[guessRow][guessColumn].available === true &&
 			board[guessRow][guessColumn].boatPlacedOnPosition === null
@@ -57,7 +58,7 @@ const gameboard = () => {
 			board[guessRow][guessColumn].available === false &&
 			board[guessRow][guessColumn].boatPlacedOnPosition === null
 		) {
-			alert(
+			console.log(
 				"these coordinates have already been taken and cannot be used anymore"
 			);
 		}
@@ -69,7 +70,7 @@ const gameboard = () => {
 	return {
 		board,
 		placeShips,
-		recieveAttack,
+		receiveAttack,
 		allAreSunk,
 	};
 };

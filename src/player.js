@@ -8,9 +8,9 @@ const player = () => {
 		let turn = true;
 		if (turn === true) {
 			enemyBoard.receiveAttack(guessedRow, guessedCol); //row and col need to come from somewhere.
-			console.log("else");
 		}
 		turn = false;
+		return turn;
 	}
 
 	function randomCoordinates() {

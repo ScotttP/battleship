@@ -82,6 +82,9 @@ test("testing if playerTurn function works", () => {
 	const player1 = player();
 	const computer = player();
 	let enemyBoard = computer.boardFactory;
-	//either random row and col or picked by user
-	player1.playerTurn(enemyBoard, row, col);
+	let row = computer.randomCoordinates().randomRow;
+	let col = computer.randomCoordinates().randomCol;
+	let thisTurn = player1.playerTurn(enemyBoard, row, col);
+
+	expect(thisTurn).toBe(false);
 });
