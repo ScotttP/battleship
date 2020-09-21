@@ -1,9 +1,4 @@
-import gameboard from "./gameboard";
-import ship from "./ship";
 const player = () => {
-	let boardFactory = gameboard();
-	let shipsFactory = ship();
-
 	function playerTurn(enemyBoard, guessedRow, guessedCol) {
 		let turn = true;
 		if (turn === true) {
@@ -12,13 +7,12 @@ const player = () => {
 		turn = false;
 		return turn;
 	}
-
 	function randomCoordinates() {
 		let randomRow = Math.floor(Math.random() * 9);
 		let randomCol = Math.floor(Math.random() * 9);
 		return { randomRow, randomCol };
 	}
-	return { boardFactory, shipsFactory, playerTurn, randomCoordinates };
+	return { playerTurn, randomCoordinates };
 };
 
-export { player };
+export default player;
