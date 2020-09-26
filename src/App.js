@@ -5,7 +5,7 @@ import player from "./player";
 import "./App.css";
 function App() {
 	let userBoard = gameboard();
-	//let computerBoard = gameboard();
+	let computerBoard = gameboard();
 	function gameLoop() {
 		// let user = player();
 		// let computer = player();
@@ -21,11 +21,29 @@ function App() {
 
 	return (
 		<div className="App">
-			{userBoard.board.map((row, i) => {
-				return row.map((cell, j) => {
-					return <div>cell</div>;
-				});
-			})}
+			<div id="gameBoardContainer">
+				<div id="userGameboardContainer">
+					<h1>User Gameboard</h1>
+					<div className="gameBoardStyling">
+						{userBoard.board.map((row, i) => {
+							return row.map((col) => {
+								return <div class="gameboardGrid"></div>;
+							});
+						})}
+					</div>
+				</div>
+				<div id="computerGameboardContainer">
+					<h1>Computer Gameboard</h1>
+					<div className="gameBoardStyling">
+						{computerBoard.board.map((row, i) => {
+							return row.map((col) => {
+								return <div class="gameboardGrid"></div>;
+							});
+						})}
+					</div>
+				</div>
+			</div>
+			<div id="userShipsContainer">Ships</div>
 		</div>
 	);
 }
