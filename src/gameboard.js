@@ -18,13 +18,14 @@ const gameboard = () => {
 		if (selectedBoat.orientation === "horizontal") {
 			if (board[placedRow][placedColumn].available === true) {
 				for (let i = 0; i <= selectedBoat.length - 1; i++) {
+					//logic for making coordinates unavailable
 					board[placedRow][placedColumn].available = false;
 					board[placedRow][placedColumn].boatPlacedOnPosition = selectedBoat;
 					placedColumn++;
 				}
 				return board;
 			} else {
-				console.log("board position taken");
+				console.log("board position taken"); //need logic to have it return nothing
 			}
 		} else if (selectedBoat.orientation === "vertical") {
 			if (board[placedRow][placedColumn].available === true) {

@@ -39,7 +39,7 @@ const ship = () => {
 	function hit(selectedBoat) {
 		shipsList[selectedBoat].health -= 1;
 		isSunk(selectedBoat);
-		return shipsList[selectedBoat].health; //my need to change the return statement
+		return shipsList[selectedBoat].health; //may need to change the return statement
 	}
 	function isSunk(selectedBoat) {
 		return shipsList[selectedBoat].health > 0 ? "not sunk" : "sunk";
